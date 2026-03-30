@@ -150,4 +150,4 @@ Este proyecto incluye un archivo [`Reflexiones_sobre_el_desarrollo.txt`](./Refle
 
 ---
 
-*Proyecto desarrollado en junio de 2020 como trabajo final del Bootcamp Full-Stack de [Hack a Boss](https://www.hackaboss.com/).*
+*Proyecto desarrollado en abril, mayo y junio de 2020 como trabajo final de un bootcamp.

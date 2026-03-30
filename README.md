@@ -1,91 +1,149 @@
+# 📚 Concursos Literarios — Agregador y gestor de convocatorias
 
+Aplicación web fullstack para centralizar, gestionar e inscribirse en concursos literarios. Desarrollada como proyecto final del Bootcamp Full-Stack de Hack a Boss (2020).
 
- 
+---
 
-- Planificación de rutas a partir de wireframes, requerimientos y mi diseño de BD en MySQL. 
+## 🧩 ¿Qué hace?
 
-- Creación del entorno de desarrollo.
+La plataforma permite a escritoras y escritores encontrar convocatorias literarias activas, próximas o ya finalizadas, inscribirse en ellas, y valorarlas una vez participadas. Incluye un panel de administración para gestionar el contenido de la plataforma.
 
-- Instalación de dependencias, edición del .gitignore, creación .env, .eslintrc.json
+---
 
-- Edición de package.json para script de arranque del módulo "start" y "dev".
+## ⚙️ Stack tecnológico
 
-- Conexión con mi Base de Datos en DB.js + edición del .env 
+| Capa | Tecnología |
+|------|------------|
+| Frontend | Vue.js |
+| Backend | Node.js + Express |
+| Base de datos | MySQL |
+| Validaciones | Hapi-Joi |
+| Autenticación | JWT + bcrypt |
+| Email | Nodemailer |
+| Testing de API | Postman |
 
-- Creación de directorios (middlewares, validations, helpers)
+---
 
+## ✨ Funcionalidades principales
 
+### Gestión de usuarios
+- Registro con validación por email
+- Login con JWT
+- Edición de perfil y cambio de contraseña
+- Historial de inscripciones
+- Desactivación y borrado de cuenta
+- Sistema de roles (usuario / administrador)
 
--  TRABAJO CON LAS RUTAS DE "USUARIOS", "CONCURSOS", "INSCRIPCIONES" y "VALORACIONES", correspondientes a las tablas de la BD, exceptuando las "VALORACIONES" que se incluyen en la tabla de INSCRIPCIONES.
+### Gestión de concursos (rol admin)
+- Crear, editar y borrar convocatorias
+- Asignar ganador/a
+- Subida de imagen de portada
+- Vistas filtradas: próximos, en curso, finalizados
 
+### Inscripciones
+- Inscripción y cancelación de participación
+- Consulta de participantes por concurso
+- Valoración post-participación (una por inscripción, vinculada a la tabla de inscripciones para garantizar integridad)
+- Ranking de concursos por valoración media
 
- - Importación y exportación de funciones y módulos, uso de módulos externos.
- - Utilización de arrays, objetos, destructuring, asincronía.
- - Manejo del paso de parámetros, autenticaciones e información envíada a través del "body".
- - Inyección de SQL, consultas multitabla.
- - Uso de encryptación de contraseñas, de generador de códigos e implementación del envío de e-mail de registro a través de      módulos de node.js
- - Comprobaciónes para la no duplicidad de campos y validaciones de tipo de dato, longitud, formato.
- - Formateo de fechas.
- - Uso de roles para controlar permisos sobre la BD.
- - Testeos con Postman.
+### Arquitectura backend
+- Estructura modular: rutas, middlewares, validaciones y helpers separados
+- Consultas SQL multitabla (JOINs) para datos cruzados
+- Protección contra inyección SQL
+- Validación de datos de entrada con esquemas Joi
+- Formateo de fechas y verificación de unicidad de campos
 
+---
 
-- DIRECTORIO "validations" con creación de esquemas para validar los datos de entrada en la BD con ayuda del módulo Hapi-Joi.
-	
+## 🗂️ Estructura del proyecto
 
-- Rutas de USUARIOS:
+```
+/
+├── Backend/
+│   ├── middlewares/
+│   ├── validations/      # Esquemas Joi
+│   ├── helpers/
+│   └── routes/           # usuarios, concursos, inscripciones
+├── Frontend/             # Vue.js
+├── BD/                   # Scripts SQL
+└── Documentacion/
+```
 
-	- Crear nuevo usuario 
-	- Validar cuenta de usuario 
-	- Hacer login 
-	- Editar datos de usuario
-	- Modificar contraseña
-	- Obtener datos de usuario
-	- Ver el historial de inscripciones a concursos
-	- Deshabilitar cuenta.//Falta "rehabilitar", tengo esta función en barbecho
-	- Borrar cuenta definitivamente
-	
+---
 
+## 🚀 Instalación local
 
+```bash
+# Clona el repositorio
+git clone https://github.com/SiraPerriki/PROYECTO.git
 
-- Rutas de CONCURSOS:
+# Instala dependencias del backend
+cd Backend
+npm install
 
-	- Nuevo concurso
-	- Editar concurso
-	- Obtener datos de concurso
-	- Borrar concurso
-	- Listar todos los concursos
-	- Listar próximos concursos
-	- Listar concursos finalizado
-	- Asignar ganador
+# Configura las variables de entorno
+cp .env.example .env
+# Edita .env con tus credenciales de base de datos y JWT secret
 
-	
+# Importa la base de datos
+# Usa el script SQL incluido en /BD
 
+# Arranca el servidor
+npm run dev
 
-- Rutas de INSCRIPCIONES:
+# En otra terminal, instala y arranca el frontend
+cd ../Frontend
+npm install
+npm run serve
+```
 
-	- Inscribirse.
-	- Cancelar suscripción.
-        - Ver usuarios inscritos.
+---
 
+## 🎨 Diseño y planificación
 
+El proyecto partió de un proceso de diseño UX completo antes de escribir ninguna línea de código: arquitectura de información, flujos de usuario y wireframes de todas las pantallas, con vistas diferenciadas por rol (usuario / administrador) y estados condicionales.
 
-- Rutas de VALORACIONES:
+**Mapa completo de pantallas y flujos:**
 
-   - Nueva valoracíon
-   - Ver ranking de concursos
-   - Ver valoración de concurso
+![Mockup general](./Documentacion/mockups.png)
 
+**Wireframes:**
 
+| Landing y registro | Perfil de usuario | Ficha de concurso |
+|---|---|---|
+| ![Wire 1](./Documentacion/Wireframes/1.jpeg) | ![Wire 2](./Documentacion/Wireframes/2.jpeg) | ![Wire 3](./Documentacion/Wireframes/3.jpeg) |
 
-    
- - ACTUALMENTE PENDIENTE: Quiero implementar un buscador en que se puedan rellenar todos los campos incluyendo rango de fechas tal y como se pide. Está en desarrollo porque no quiero hacer buscadores separados sino uno general que busque entre todos los campos de la tabla.
+| Detalle concurso | Panel admin |
+|---|---|
+| ![Wire 4](./Documentacion/Wireframes/4.jpeg) | ![Wire 5](./Documentacion/Wireframes/5.jpeg) |
 
--[ SOLUCIONADO 18/ 06/ 20 ]  Pendiente subida de imágenes para "nuevo concurso" y "edición de concurso".
-			  
-- RESPUESTA RESUELTA SOBRE ESTO ---> Pendiente de respuesta respecto a una duda de SQL para modificar el proceso de rating, actualmente funcionando pero mejorable en cuanto a integridad de la BD. Ya que sólo se me pide una valoración por persona inscrita y ésta sólo se hará en relación a las inscripciones, he añadido un campo "valoración" en la tabla de inscripciones para evitar duplicidades, pues la tabla de VALORACIONES tenía prácticamente los mismos campos que la de INSCRIPCIONES cuando se me dió el VB de la parte SQL, es decir, las claves foráneas id_usuario e id_concurso de la tabla usuarios y concursos respectivamente. Por evitar duplicidades he hecho la valoración en relación a la inscripción y funciona perfectamente pero tengo dudas respecto a la integridad de este método que me gustaría poder comentar con alguien.
+---
 
-- Revisión completa del proyecto
+## 💭 Decisiones técnicas destacadas
+
+**Valoraciones integradas en inscripciones:** En lugar de mantener una tabla separada de valoraciones (que replicaría las claves foráneas de inscripciones), opté por añadir el campo `valoracion` directamente en la tabla de inscripciones. Esto garantiza la restricción de una valoración por participante y por concurso sin duplicar estructura. La solución es funcional aunque abre preguntas interesantes sobre normalización vs. pragmatismo.
+
+**Validación con Hapi-Joi:** Toda entrada de datos pasa por esquemas de validación centralizados antes de llegar a la base de datos, separando esta responsabilidad del controlador de rutas.
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Buscador general con filtrado por todos los campos simultáneamente (incluyendo rango de fechas)
+- [ ] Rehabilitación de cuentas desactivadas
+- [ ] Paginación en listados
+- [ ] Notificaciones por email sobre concursos próximos a vencer
+
+---
+
+## 📝 Notas de desarrollo
+
+Este proyecto incluye un archivo [`Reflexiones_sobre_el_desarrollo.txt`](./Reflexiones_sobre_el_desarrollo.txt) con notas del proceso: cómo se definió el modelo de datos, qué preguntas surgieron sobre el producto antes de empezar a desarrollar, y por qué se tomaron ciertas decisiones.
+
+---
+
+*Proyecto desarrollado en abril-mayo-junio de 2020 como trabajo final del Bootcamp*
+
 
 
 	

@@ -29,7 +29,7 @@ async function newUser(req, res, next) {
     const registrationCode = randomString(40);
     const validationURL = `${process.env.PUBLIC_HOST}/usuarios/validar?code=${registrationCode}`;
 
-    try {
+    /* try {
       await sendEmail({
         email: mail,
         title: 'Debes validar tu cuenta para InterTextual',
@@ -39,6 +39,8 @@ async function newUser(req, res, next) {
       console.error(error);
       throw new Error('Error al enviar el correo electrónico..');
     }
+*/
+
     /*
     let savedFileAvatar;
     if (req.files && req.files.avatar) {
@@ -70,6 +72,7 @@ async function newUser(req, res, next) {
         'Usuario creado correctamente. Debes comprobar tu correo electrónico para activar tu cuenta'
     });
   } catch (error) {
+    console.error('ERROR REGISTRO:', error);
     next(error);
   } finally {
     if (connection) {

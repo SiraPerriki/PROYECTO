@@ -99,6 +99,14 @@ npm run serve
 
 ---
 
+## 📸 Capturas de pantalla
+
+| Landing | Registro | Login |
+|---|---|---|
+| ![Landing](./Documentacion/proyecto0.png) | ![Registro](./Documentacion/proyecto1.png) | ![Login](./Documentacion/proyecto2.png) |
+
+---
+
 ## 🎨 Diseño y planificación
 
 El proyecto partió de un proceso de diseño UX completo antes de escribir ninguna línea de código: arquitectura de información, flujos de usuario y wireframes de todas las pantallas, con vistas diferenciadas por rol (usuario / administrador) y estados condicionales.
@@ -142,13 +150,4 @@ Este proyecto incluye un archivo [`Reflexiones_sobre_el_desarrollo.txt`](./Refle
 
 ---
 
-*Proyecto desarrollado en abril-mayo-junio de 2020 como trabajo final del Bootcamp*
-
-
-
-	
-	
-
-
-
-
+*Proyecto desarrollado en junio de 2020 como trabajo final del Bootcamp Full-Stack de [Hack a Boss](https://www.hackaboss.com/).*
